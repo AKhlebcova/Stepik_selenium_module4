@@ -14,9 +14,7 @@ class LoginPage(BasePage):
         assert 'login' in url_line, "URL is not login-url"
 
     def should_be_login_form(self):
-        login_form = self.browser.find_elements(*LoginPageLocators.LOGIN_FORM)
-        assert len(login_form) > 0, "The page doesn't contain login form"
+        assert self.is_element_present(*LoginPageLocators.LOGIN_FORM), "The page doesn't contain login form"
 
     def should_be_register_form(self):
-        registration_form = self.browser.find_elements(*LoginPageLocators.REGISTER_FORM)
-        assert len(registration_form) > 0, "The page doesn't contain registration form"
+        assert self.is_element_present(*LoginPageLocators.REGISTER_FORM), "The page doesn't contain registration form"
