@@ -5,6 +5,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from .locators import BasePageLocators
 
+
 class BasePage():
     def __init__(self, browser, url, timeout=10):
         self.browser = browser
@@ -21,7 +22,6 @@ class BasePage():
             return False
         return True
 
-
     def is_not_element_present(self, how, what, timeout=4):
         try:
             WebDriverWait(self.browser, timeout).until(EC.presence_of_element_located((how, what)))
@@ -32,7 +32,8 @@ class BasePage():
 
     def is_disappeared(self, how, what, timeout=4):
         try:
-            WebDriverWait(self.browser, timeout, 1, TimeoutException).until_not(EC.presence_of_element_located((how, what)))
+            WebDriverWait(self.browser, timeout, 1, TimeoutException).until_not(
+                EC.presence_of_element_located((how, what)))
         except TimeoutException:
             return False
 
@@ -49,14 +50,12 @@ class BasePage():
         assert self.is_element_present(*BasePageLocators.BASKET_LINK), "Basket link is not presented"
 
     def go_to_basket_page(self):
-        # button = WebDriverWait(self.browser, 10).until(
-        #     EC.element_to_be_clickable(BasePageLocators.BASKET_LINK)
-        # )
-        # button.click()
-
         link = self.browser.find_element(*BasePageLocators.BASKET_LINK)
         link.click()
 
+    def should_be_authorized_user(self):
+        assert self.is_element_present(*BasePageLocators.USER_ICON), "User icon is not presented," \
+                                                                     " probably unauthorised user"
 
     def solve_quiz_and_get_code(self):
         try:
@@ -76,4 +75,3 @@ class BasePage():
             return alert_text
         except NoAlertPresentException:
             print("No second alert presented")
-
