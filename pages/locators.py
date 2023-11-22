@@ -10,7 +10,7 @@ class LoginPageLocators():
     REGISTER_FORM = (By.CSS_SELECTOR, "#register_form")
 
 
-class ProductLocator():
+class ProductPageLocators():
     ADD_PRODUCT = (By.CSS_SELECTOR, "button.btn-add-to-basket")
     PRODUCT_PRICE = (By.CSS_SELECTOR, ".col-sm-6.product_main > p.price_color")
     PRODUCT_NAME = (By.CSS_SELECTOR, ".col-sm-6.product_main > h1")
